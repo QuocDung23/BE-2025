@@ -11,6 +11,11 @@ import {
 } from "./constants";
 import { Registries } from "../modules";
 
+/**
+ * Generate an OpenAPI v3 document describing the API, including metadata and a JWT bearer authentication scheme.
+ *
+ * @returns The OpenAPI v3 document object containing `openapi`, `info`, `externalDocs`, and registered components (including the `bearerAuth` security scheme)
+ */
 export function generateOpenAPIDocument() {
   const registry = new OpenAPIRegistry([...Registries]);
 
