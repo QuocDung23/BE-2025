@@ -9,15 +9,17 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  name      String?  @default("User")
-  bio       String?  @db.Text
-  address   String?  @db.Text
-  avatar    String?
-  verify    Boolean  @default(false)
-  status    String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String   @id @default(uuid())
+  email      String   @unique
+  password   String?
+  name       String?  @default("User")
+  bio        String?  @db.Text
+  address    String?  @db.Text
+  avatar     String?
+  provider   String?
+  providerId String?
+  verify     Boolean  @default(false)
+  status     String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

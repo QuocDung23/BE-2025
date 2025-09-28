@@ -45,6 +45,9 @@ export class AuthService {
         throw new Error("User not found")
       }
 
+      if (!user.password) {
+        throw new Error("User password is missing");
+      }
       const isMatch = await bcrypt.compare(password, user.password)
         if(!isMatch){
           throw new Error("Invalid Password")
@@ -55,12 +58,16 @@ export class AuthService {
         process.env.ACCESS_TOKEN_SECRET as string,
         { expiresIn: process.env.ACCESS_TOKEN_EXPIRY || "15m" } as SignOptions
       );
+      console.log("check accessToken: ", accessToken);
+      
 
       const refreshToken = jwt.sign(
         { id: user.id, email: user.email },
         process.env.REFRESH_TOKEN_SECRET || "default_refresh_secret",
         { expiresIn: process.env.REFRESH_TOKEN_EXPIRY || "30m" } as SignOptions
       )
+      console.log("check refreshToken : ", refreshToken);
+
 
       res.cookie("accessToken", accessToken, {
         httpOnly: true,
@@ -85,4 +92,5 @@ export class AuthService {
       throw error;
     }
   }
+
 }

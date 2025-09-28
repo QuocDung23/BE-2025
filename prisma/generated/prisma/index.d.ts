@@ -878,6 +878,8 @@ export namespace Prisma {
     bio: string | null
     address: string | null
     avatar: string | null
+    provider: string | null
+    providerId: string | null
     verify: boolean | null
     status: string | null
     createdAt: Date | null
@@ -892,6 +894,8 @@ export namespace Prisma {
     bio: string | null
     address: string | null
     avatar: string | null
+    provider: string | null
+    providerId: string | null
     verify: boolean | null
     status: string | null
     createdAt: Date | null
@@ -906,6 +910,8 @@ export namespace Prisma {
     bio: number
     address: number
     avatar: number
+    provider: number
+    providerId: number
     verify: number
     status: number
     createdAt: number
@@ -922,6 +928,8 @@ export namespace Prisma {
     bio?: true
     address?: true
     avatar?: true
+    provider?: true
+    providerId?: true
     verify?: true
     status?: true
     createdAt?: true
@@ -936,6 +944,8 @@ export namespace Prisma {
     bio?: true
     address?: true
     avatar?: true
+    provider?: true
+    providerId?: true
     verify?: true
     status?: true
     createdAt?: true
@@ -950,6 +960,8 @@ export namespace Prisma {
     bio?: true
     address?: true
     avatar?: true
+    provider?: true
+    providerId?: true
     verify?: true
     status?: true
     createdAt?: true
@@ -1032,11 +1044,13 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: string
     email: string
-    password: string
+    password: string | null
     name: string | null
     bio: string | null
     address: string | null
     avatar: string | null
+    provider: string | null
+    providerId: string | null
     verify: boolean
     status: string | null
     createdAt: Date
@@ -1068,6 +1082,8 @@ export namespace Prisma {
     bio?: boolean
     address?: boolean
     avatar?: boolean
+    provider?: boolean
+    providerId?: boolean
     verify?: boolean
     status?: boolean
     createdAt?: boolean
@@ -1082,6 +1098,8 @@ export namespace Prisma {
     bio?: boolean
     address?: boolean
     avatar?: boolean
+    provider?: boolean
+    providerId?: boolean
     verify?: boolean
     status?: boolean
     createdAt?: boolean
@@ -1096,6 +1114,8 @@ export namespace Prisma {
     bio?: boolean
     address?: boolean
     avatar?: boolean
+    provider?: boolean
+    providerId?: boolean
     verify?: boolean
     status?: boolean
     createdAt?: boolean
@@ -1110,13 +1130,15 @@ export namespace Prisma {
     bio?: boolean
     address?: boolean
     avatar?: boolean
+    provider?: boolean
+    providerId?: boolean
     verify?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "name" | "bio" | "address" | "avatar" | "verify" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "name" | "bio" | "address" | "avatar" | "provider" | "providerId" | "verify" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1124,11 +1146,13 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
-      password: string
+      password: string | null
       name: string | null
       bio: string | null
       address: string | null
       avatar: string | null
+      provider: string | null
+      providerId: string | null
       verify: boolean
       status: string | null
       createdAt: Date
@@ -1563,6 +1587,8 @@ export namespace Prisma {
     readonly bio: FieldRef<"User", 'String'>
     readonly address: FieldRef<"User", 'String'>
     readonly avatar: FieldRef<"User", 'String'>
+    readonly provider: FieldRef<"User", 'String'>
+    readonly providerId: FieldRef<"User", 'String'>
     readonly verify: FieldRef<"User", 'Boolean'>
     readonly status: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
@@ -1955,6 +1981,8 @@ export namespace Prisma {
     bio: 'bio',
     address: 'address',
     avatar: 'avatar',
+    provider: 'provider',
+    providerId: 'providerId',
     verify: 'verify',
     status: 'status',
     createdAt: 'createdAt',
@@ -2051,11 +2079,13 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
-    password?: StringFilter<"User"> | string
+    password?: StringNullableFilter<"User"> | string | null
     name?: StringNullableFilter<"User"> | string | null
     bio?: StringNullableFilter<"User"> | string | null
     address?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
+    provider?: StringNullableFilter<"User"> | string | null
+    providerId?: StringNullableFilter<"User"> | string | null
     verify?: BoolFilter<"User"> | boolean
     status?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -2065,11 +2095,13 @@ export namespace Prisma {
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     email?: SortOrder
-    password?: SortOrder
+    password?: SortOrderInput | SortOrder
     name?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     avatar?: SortOrderInput | SortOrder
+    provider?: SortOrderInput | SortOrder
+    providerId?: SortOrderInput | SortOrder
     verify?: SortOrder
     status?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -2082,11 +2114,13 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    password?: StringFilter<"User"> | string
+    password?: StringNullableFilter<"User"> | string | null
     name?: StringNullableFilter<"User"> | string | null
     bio?: StringNullableFilter<"User"> | string | null
     address?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
+    provider?: StringNullableFilter<"User"> | string | null
+    providerId?: StringNullableFilter<"User"> | string | null
     verify?: BoolFilter<"User"> | boolean
     status?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -2096,11 +2130,13 @@ export namespace Prisma {
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     email?: SortOrder
-    password?: SortOrder
+    password?: SortOrderInput | SortOrder
     name?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     avatar?: SortOrderInput | SortOrder
+    provider?: SortOrderInput | SortOrder
+    providerId?: SortOrderInput | SortOrder
     verify?: SortOrder
     status?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -2116,11 +2152,13 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
-    password?: StringWithAggregatesFilter<"User"> | string
+    password?: StringNullableWithAggregatesFilter<"User"> | string | null
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     bio?: StringNullableWithAggregatesFilter<"User"> | string | null
     address?: StringNullableWithAggregatesFilter<"User"> | string | null
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
+    provider?: StringNullableWithAggregatesFilter<"User"> | string | null
+    providerId?: StringNullableWithAggregatesFilter<"User"> | string | null
     verify?: BoolWithAggregatesFilter<"User"> | boolean
     status?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -2130,11 +2168,13 @@ export namespace Prisma {
   export type UserCreateInput = {
     id?: string
     email: string
-    password: string
+    password?: string | null
     name?: string | null
     bio?: string | null
     address?: string | null
     avatar?: string | null
+    provider?: string | null
+    providerId?: string | null
     verify?: boolean
     status?: string | null
     createdAt?: Date | string
@@ -2144,11 +2184,13 @@ export namespace Prisma {
   export type UserUncheckedCreateInput = {
     id?: string
     email: string
-    password: string
+    password?: string | null
     name?: string | null
     bio?: string | null
     address?: string | null
     avatar?: string | null
+    provider?: string | null
+    providerId?: string | null
     verify?: boolean
     status?: string | null
     createdAt?: Date | string
@@ -2158,11 +2200,13 @@ export namespace Prisma {
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
     verify?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2172,11 +2216,13 @@ export namespace Prisma {
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
     verify?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2186,11 +2232,13 @@ export namespace Prisma {
   export type UserCreateManyInput = {
     id?: string
     email: string
-    password: string
+    password?: string | null
     name?: string | null
     bio?: string | null
     address?: string | null
     avatar?: string | null
+    provider?: string | null
+    providerId?: string | null
     verify?: boolean
     status?: string | null
     createdAt?: Date | string
@@ -2200,11 +2248,13 @@ export namespace Prisma {
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
     verify?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2214,11 +2264,13 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
     verify?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2284,6 +2336,8 @@ export namespace Prisma {
     bio?: SortOrder
     address?: SortOrder
     avatar?: SortOrder
+    provider?: SortOrder
+    providerId?: SortOrder
     verify?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
@@ -2298,6 +2352,8 @@ export namespace Prisma {
     bio?: SortOrder
     address?: SortOrder
     avatar?: SortOrder
+    provider?: SortOrder
+    providerId?: SortOrder
     verify?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
@@ -2312,6 +2368,8 @@ export namespace Prisma {
     bio?: SortOrder
     address?: SortOrder
     avatar?: SortOrder
+    provider?: SortOrder
+    providerId?: SortOrder
     verify?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder

@@ -3,6 +3,7 @@ import { AuthController } from "./auth.controller";
 import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
 import { email, z } from "zod";
 import { createApiResponse } from "../../swagger/openAPIResponseBuilders";
+import passport from "@/configs/passport";
 
 export const authRegistry = new OpenAPIRegistry();
 
@@ -29,8 +30,8 @@ const AuthResponseSchema = z.object({
 
 const AuthLoginSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(6)
-})
+  password: z.string().min(6),
+});
 
 authRegistry.registerPath({
   method: "post",
@@ -61,14 +62,26 @@ authRegistry.registerPath({
     body: {
       content: {
         "application/json": {
-          schema: UserRegisterSchema
-        }
-      }
-    }
+          schema: AuthLoginSchema,
+        },
+      },
+    },
   },
   responses: createApiResponse(AuthResponseSchema, "Login successful"),
 });
 
 router.post("/register", (req, res) => controller.register(req, res));
-router.post("/login",(req, res) => controller.login(req, res))
+router.post("/login", (req, res) => controller.login(req, res));
+
+// Bước 1: Gọi để login Google
+router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+
+// Bước 2: Callback Google redirect về
+router.get("/google/callback",
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home or to a profile page.
+    res.redirect('/');
+  });
+
 export { router as authRouter };
