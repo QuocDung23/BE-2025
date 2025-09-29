@@ -5,6 +5,7 @@ import crypto from "crypto";
 import dotenv from "dotenv"
 import { Request, Response } from "express";
 import jwt, { SignOptions } from "jsonwebtoken";
+import { email, string } from "zod";
 
 dotenv.config()
 
@@ -89,6 +90,39 @@ export class AuthService {
       };
     } catch (error) {
       console.error("Error in login:", error);
+      throw error;
+    }
+  }
+
+  async refreshAccessToken (refreshToken: string, res: Response ) {
+    try {
+      if( !refreshToken){
+        throw new Error("RefreshToken not exist")
+      }
+        const decoded = jwt.verify(
+          refreshToken,
+          process.env.REFRESH_TOKEN_SECRET || "default_refresh_secret"
+        ) as { id: string; email: string }; 
+
+      const user = await AuthRepository.findUserByEmail(decoded.email)
+        if( !user ) {
+          throw new Error("User not exist")
+        }
+
+      const newAccessToken = jwt.sign(
+        { id: user.id, email: user.email },
+        process.env.ACCESS_TOKEN_SECRET as string,
+        { expiresIn: process.env.ACCESS_TOKEN_EXPIRY } as SignOptions
+      )
+
+      res.cookie("accessToken", newAccessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 15 * 60 * 1000,
+      });
+    } catch (error) {
+      console.error("Error refresh access token:", error)
       throw error;
     }
   }

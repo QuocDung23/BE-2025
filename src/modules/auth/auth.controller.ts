@@ -51,4 +51,25 @@ export class AuthController {
       })
     }
   }
+
+  async refreshAccessToken(req: Request, res: Response) {
+    try {
+      const refreshToken = req.cookies.refreshToken;
+      if (!refreshToken) {
+        return res.status(401).json({ success: false, error: "Không tìm thấy refresh token" });
+      }
+      const result = await authService.refreshAccessToken(refreshToken, res);
+      return res.status(200).json({
+        success: true,
+        message: result,
+        data: result,
+      });
+    } catch (error: any) {
+      console.error("Lỗi trong refreshAccessToken:", error.message);
+      return res.status(500).json({ 
+        success: false, 
+        error: error.message || "Đã xảy ra lỗi khi cấp lại access token" 
+      });
+    }
+  }
 }

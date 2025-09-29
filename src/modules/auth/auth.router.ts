@@ -73,15 +73,14 @@ authRegistry.registerPath({
 router.post("/register", (req, res) => controller.register(req, res));
 router.post("/login", (req, res) => controller.login(req, res));
 
-// Bước 1: Gọi để login Google
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
-
-// Bước 2: Callback Google redirect về
 router.get("/google/callback",
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    // Successful authentication, redirect home or to a profile page.
     res.redirect('/');
-  });
+});
+
+router.post("/refresh-token", controller.refreshAccessToken)
+
 
 export { router as authRouter };
