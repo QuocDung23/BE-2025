@@ -133,7 +133,9 @@ exports.Prisma.UserScalarFieldEnum = {
   verify: 'verify',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  otpCode: 'otpCode',
+  otpExpiresAt: 'otpExpiresAt'
 };
 
 exports.Prisma.SortOrder = {
